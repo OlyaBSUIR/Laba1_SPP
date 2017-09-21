@@ -1,0 +1,10 @@
+C:\Users\Оля\Desktop\Laba1_SPP\Laba1_SPP\bin\Debug\Laba1_SPP.exe.config
+C:\Users\Оля\Desktop\Laba1_SPP\Laba1_SPP\bin\Debug\Laba1_SPP.exe
+C:\Users\Оля\Desktop\Laba1_SPP\Laba1_SPP\bin\Debug\Laba1_SPP.pdb
+C:\Users\Оля\Desktop\Laba1_SPP\Laba1_SPP\obj\Debug\Laba1_SPP.csprojResolveAssemblyReference.cache
+C:\Users\Оля\Desktop\Laba1_SPP\Laba1_SPP\obj\Debug\Laba1_SPP.frmMain.resources
+C:\Users\Оля\Desktop\Laba1_SPP\Laba1_SPP\obj\Debug\Laba1_SPP.Properties.Resources.resources
+C:\Users\Оля\Desktop\Laba1_SPP\Laba1_SPP\obj\Debug\Laba1_SPP.csproj.GenerateResource.Cache
+C:\Users\Оля\Desktop\Laba1_SPP\Laba1_SPP\obj\Debug\Laba1_SPP.exe
+C:\Users\Оля\Desktop\Laba1_SPP\Laba1_SPP\obj\Debug\Laba1_SPP.pdb
+C:\Users\Оля\Desktop\Laba1_SPP\Laba1_SPP\bin\Debug\HtmlAgilityPack.dll
