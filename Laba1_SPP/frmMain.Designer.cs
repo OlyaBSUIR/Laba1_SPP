@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnMatch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cbCities = new System.Windows.Forms.ComboBox();
@@ -36,12 +37,14 @@
             this.lbTemperature = new System.Windows.Forms.Label();
             this.lbSpeed = new System.Windows.Forms.Label();
             this.lbHumadity = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.lbTime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnMatch
             // 
             this.btnMatch.Font = new System.Drawing.Font("Monotype Corsiva", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnMatch.Location = new System.Drawing.Point(191, 270);
+            this.btnMatch.Location = new System.Drawing.Point(212, 289);
             this.btnMatch.Name = "btnMatch";
             this.btnMatch.Size = new System.Drawing.Size(75, 23);
             this.btnMatch.TabIndex = 0;
@@ -124,11 +127,26 @@
             this.lbHumadity.TabIndex = 10;
             this.lbHumadity.Text = "Влажность:";
             // 
+            // timer
+            // 
+            this.timer.Interval = 4000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Font = new System.Drawing.Font("Monotype Corsiva", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbTime.Location = new System.Drawing.Point(21, 255);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(0, 25);
+            this.lbTime.TabIndex = 11;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 324);
+            this.ClientSize = new System.Drawing.Size(516, 324);
+            this.Controls.Add(this.lbTime);
             this.Controls.Add(this.lbHumadity);
             this.Controls.Add(this.lbSpeed);
             this.Controls.Add(this.lbTemperature);
@@ -154,6 +172,8 @@
         private System.Windows.Forms.Label lbTemperature;
         private System.Windows.Forms.Label lbSpeed;
         private System.Windows.Forms.Label lbHumadity;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Label lbTime;
     }
 }
 

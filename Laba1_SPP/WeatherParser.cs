@@ -5,40 +5,52 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Laba1_SPP
 {
-    public class HtmlParser
+    public class WeatherParser
     {
         private string url = "https://yandex.by/pogoda/";
         private string city;
         private string html;
         private HtmlDocument doc; 
         private HtmlNode bodyNode;
-        private  HtmlNodeCollection collection;
+        private HtmlNodeCollection collection;
 
-        public HtmlParser(string city)
+        public  WeatherParser(string city)
         {
             this.city = city;
             url += city;
-            this.Initialization();
-
+            //this.Initialization();
         }
-        
-        private void Initialization()
+     
+        private void InitializationOfCollectionNode()
+        {
+            doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(html);
+            bodyNode = doc.DocumentNode.SelectSingleNode("//span[@class='current-weather__col current-weather__info']");
+            doc.LoadHtml(bodyNode.InnerHtml);
+            collection = doc.DocumentNode.SelectNodes("//div");
+        }
+
+        public async Task Initialization()
         {
             try
             {
                 HttpWebRequest myHttpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
-                HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
+                var task=myHttpWebRequest.GetResponseAsync();
+                HttpWebResponse myHttpWebResponse = (HttpWebResponse) await task;
                 StreamReader myStreamReader = new StreamReader(myHttpWebResponse.GetResponseStream());
                 html = myStreamReader.ReadToEnd();
+                InitializationOfCollectionNode();
                 doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(html);
                 bodyNode = doc.DocumentNode.SelectSingleNode("//span[@class='current-weather__col current-weather__info']");
                 doc.LoadHtml(bodyNode.InnerHtml);
                 collection = doc.DocumentNode.SelectNodes("//div");
+
             }
             catch (Exception)
             {

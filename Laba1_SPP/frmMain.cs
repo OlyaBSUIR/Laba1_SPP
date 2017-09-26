@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HtmlAgilityPack;
+using System.Threading;
 
 namespace Laba1_SPP
 {
@@ -19,15 +20,20 @@ namespace Laba1_SPP
         public frmMain()
         {
             InitializeComponent();
+            //Делаем таймер доступным
+            timer.Enabled = true;
+            //Запускаем таймер
+            timer.Start();
             cbCities.SelectedIndex = 0;
         }
 
-        private void getData()
+        private async void getData()
         {
             string city = cbCities.Items[cbCities.SelectedIndex].ToString();
             try
             {
-                HtmlParser parser = new HtmlParser(city);
+                WeatherParser parser = new WeatherParser(city);
+                await parser.Initialization();
                 lbTemperature.Text = "Сейчас: " + parser.GetTemperature();
                 lbSpeed.Text = parser.GetSpeed();
                 lbHumadity.Text = parser.GetHumadity();
@@ -46,7 +52,15 @@ namespace Laba1_SPP
 
         private void cbCities_SelectedIndexChanged(object sender, EventArgs e)
         {
-            getData(); 
+             getData(); 
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+
+            getData();
+
+            lbTime.Text = string.Format("Время обновления: {0}", DateTime.Now.ToString("HH:mm:ss"));
         }
 
         }
