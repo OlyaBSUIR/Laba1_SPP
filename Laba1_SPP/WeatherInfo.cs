@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Laba1_SPP
 {
-    public class WeatherParser
+    public class WeatherInfo
     {
         private string url = "https://yandex.by/pogoda/";
         private string city;
@@ -19,7 +19,7 @@ namespace Laba1_SPP
         private HtmlNode bodyNode;
         private HtmlNodeCollection collection;
 
-        public  WeatherParser(string city)
+        public  WeatherInfo(string city)
         {
             this.city = city;
             url += city;
@@ -45,12 +45,9 @@ namespace Laba1_SPP
                 StreamReader myStreamReader = new StreamReader(myHttpWebResponse.GetResponseStream());
                 html = myStreamReader.ReadToEnd();
                 InitializationOfCollectionNode();
-                doc = new HtmlAgilityPack.HtmlDocument();
-                doc.LoadHtml(html);
-                bodyNode = doc.DocumentNode.SelectSingleNode("//span[@class='current-weather__col current-weather__info']");
-                doc.LoadHtml(bodyNode.InnerHtml);
-                collection = doc.DocumentNode.SelectNodes("//div");
-
+                Thread thread = new Thread(InitializationOfCollectionNode);
+                thread.Start();
+                thread.Join();
             }
             catch (Exception)
             {
@@ -88,7 +85,7 @@ namespace Laba1_SPP
             else throw new Exception("Не удалось получить данные:(");
         }
 
-        public string GetData()
+        public string GetTimeOfLastUpdate()
         {
 
             if (collection != null)

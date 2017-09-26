@@ -27,18 +27,18 @@ namespace Laba1_SPP
             cbCities.SelectedIndex = 0;
         }
 
-        private async void getData()
+        private async void getWeatherInfo()
         {
             string city = cbCities.Items[cbCities.SelectedIndex].ToString();
             try
             {
-                WeatherParser parser = new WeatherParser(city);
+                WeatherInfo parser = new WeatherInfo(city);
                 await parser.Initialization();
                 lbTemperature.Text = "Сейчас: " + parser.GetTemperature();
                 lbSpeed.Text = parser.GetSpeed();
                 lbHumadity.Text = parser.GetHumadity();
                 lbPressure.Text = parser.GetPressure();
-                lbData.Text = parser.GetData();
+                lbData.Text = parser.GetTimeOfLastUpdate();
             }
             catch (Exception ex)
             {
@@ -47,18 +47,18 @@ namespace Laba1_SPP
         }
         private void btnMatch_Click(object sender, EventArgs e)
         {
-            getData();          
+            getWeatherInfo();          
         }
 
         private void cbCities_SelectedIndexChanged(object sender, EventArgs e)
         {
-             getData(); 
+            getWeatherInfo(); 
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
 
-            getData();
+            getWeatherInfo();
 
             lbTime.Text = string.Format("Время обновления: {0}", DateTime.Now.ToString("HH:mm:ss"));
         }
